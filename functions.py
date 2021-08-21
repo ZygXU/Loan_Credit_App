@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import joblib
-import pycaret
 import pickle
 import json
 import plotly
@@ -61,7 +60,7 @@ def test_NAN(df):
 
 def predict(df):
     # loaded_model = pickle.load(open('application/' + 'model_catboost.pkl', 'rb'))
-    classifer = joblib.load('data/' + 'model_xgboost_recall_13v.pkl')
+    classifer = joblib.load('data/' + 'model_xgmodel_recall_13v.pkl')
     result = classifer.predict(df)
     if (result == 0):
         result = "Loan Approuved (0)"
@@ -164,7 +163,6 @@ def predict_group(customer_df):
 def create_figure(customer_df, group, col):
     data_result = pd.read_csv('data/Kmeans_group_result.csv')
     # print(data_result)
-    print("---------------------")
 
     mm0 = data_result[(data_result["result"] == group[0]) & (data_result["TARGET"] == 0)].agg(['mean', 'median'])[col]
     mm0 = mm0.rename({"mean": "0_mean", "median": "0_median"})
@@ -182,5 +180,4 @@ def create_figure(customer_df, group, col):
     fig = px.bar(mm, y=mm.index, x=mm, color=colors, title=col)
     fig.update_layout(autosize=False, width=1200, height=600)
     graph1JSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    print("--------------ENDING JSON-------")
     return graph1JSON
