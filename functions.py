@@ -32,7 +32,7 @@ def preprocessing_predict_data(df):
 
     return df
 
-
+'''
 # compare 2 dataframe, if one is included in another
 def compare(df1, df2):
     count = 0
@@ -47,10 +47,9 @@ def compare(df1, df2):
 
         count = count + 1
     return True
-
+'''
 
 def search_customer(data_1, data):
-    #search_result = data.apply(lambda x: compare(data_1, x), axis=1)
     search_result = (data['DAYS_BIRTH'] == data_1['DAYS_BIRTH']) & (data['DAYS_EMPLOYED'] == data_1['DAYS_EMPLOYED']) & (
                 data['AMT_GOODS_PRICE'] == data_1['AMT_GOODS_PRICE']) & (data['DAYS_REGISTRATION'] == data_1['DAYS_REGISTRATION'])
     print("-------SEARCH RESULT--------\n", data[search_result == True])
