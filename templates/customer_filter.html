@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Customer filter{% endblock title%}
+
+{% block content %}
+
+
+
+<center><h2> {{ filter_col_select }}  : {{ value }} </h2></center>
+
+<div id="chart1"></div>
+
+<!-- plotly CDN -->
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs1 = {{ graphJSON | safe}};
+    Plotly.plot("chart1", graphs1,{});
+</script>
+
+
+{% endblock content %}

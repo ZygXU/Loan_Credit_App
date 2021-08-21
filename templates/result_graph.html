@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+</br></br></br>
+
+{% if result!='' %}
+<center><h1 id="text"> Result : {{ result }}</h1></center>
+{% endif %}
+
+<div id="chart1"></div>
+
+<!-- plotly CDN -->
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs1 = {{ graph1JSON | safe}};
+    Plotly.plot("chart1", graphs1,{});
+</script>
+{% endblock %}

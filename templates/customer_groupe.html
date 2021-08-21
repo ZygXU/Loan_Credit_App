@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Customer filter{% endblock title%}
+
+{% block content %}
+
+<h2>Group predicted :  {{ group }}</h2>
+<h2>Loan predicted :  {{ predict_result }}</h2>
+
+<div id="chart1"></div>
+<div id="chart2"></div>
+<div id="chart3"></div>
+<div id="chart4"></div>
+<div id="chart5"></div>
+<div id="chart6"></div>
+<div id="chart7"></div>
+<div id="chart8"></div>
+<div id="chart9"></div>
+<div id="chart10"></div>
+
+<!-- plotly CDN -->
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs1 = {{ gJSON1 | safe}};
+    Plotly.plot("chart1", graphs1,{});
+    var graphs2 = {{ gJSON2 | safe}};
+    Plotly.plot("chart2", graphs2,{});
+    var graphs3 = {{ gJSON3 | safe}};
+    Plotly.plot("chart3", graphs3,{});
+    var graphs4 = {{ gJSON4 | safe}};
+    Plotly.plot("chart4", graphs4,{});
+    var graphs5 = {{ gJSON5 | safe}};
+    Plotly.plot("chart5", graphs5,{});
+    var graphs6 = {{ gJSON6 | safe}};
+    Plotly.plot("chart6", graphs6,{});
+    var graphs7 = {{ gJSON7 | safe}};
+    Plotly.plot("chart7", graphs7,{});
+    var graphs8 = {{ gJSON8 | safe}};
+    Plotly.plot("chart8", graphs8,{});
+    var graphs9 = {{ gJSON9 | safe}};
+    Plotly.plot("chart9", graphs9,{});
+    var graphs10 = {{ gJSON10 | safe}};
+    Plotly.plot("chart10", graphs10,{});
+</script>
+
+
+{% endblock content %}
