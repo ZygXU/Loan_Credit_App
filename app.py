@@ -24,16 +24,12 @@ def index():
 def customer():
     customer_df_input = session.get('customer_df_input')
     customer_df_input = pd.read_json(customer_df_input, orient='records')
-    print("-----------CUSTOMER : READ JSON---------------------")
     data = pd.read_csv('data/application_train.csv')
-    print("-----------CUSTOMER : READ CSV---------------------")
     customer_df_find = search_customer(customer_df_input.iloc[0], data)
-    print("-----------CUSTOMER : SEARCH END---------------------")
     if customer_df_find.empty:
         print('DataFrame is empty!')
         customer_df_find = customer_df_input
     session['customer_df_find'] = customer_df_find.to_json()
-    print("-----------CUSTOMER : CUSTOMER FIND DF---------------------")
     list_customer_data = customer_df_find.values.tolist()[0]
     list_customer_columns = customer_df_find.columns.values.tolist()
     print(list_customer_data)

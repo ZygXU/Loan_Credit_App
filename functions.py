@@ -160,6 +160,17 @@ def predict_group(customer_df):
     print(x)
     predict_group = model.predict(x)
 
+    if (predict_group == 0):
+        result = "rich class (0)"
+    elif(predict_group == 1):
+        result = "Young class (1)"
+    elif (predict_group == 2):
+        result = "Middle class (2)"
+    elif (predict_group == 3):
+        result = "Elder class (3)"
+    elif (predict_group == 4):
+        result = "Middle class (4)"
+
     return predict_group
 
 
