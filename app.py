@@ -52,6 +52,7 @@ def customer_filter():
                            graphJSON=graphJSON)
 
 
+
 @app.route("/customer_groupe")
 def customer_groupe():
     # data_result = pd.read_csv('data/Kmeans_group_result.csv')
@@ -72,7 +73,9 @@ def customer_groupe():
     gJSON9 = create_figure(customer_df_input, group, "EXT_SOURCE_2")
     gJSON10 = create_figure(customer_df_input, group, "EXT_SOURCE_3")
 
-    return render_template('customer_groupe.html', group=group, predict_result=predict_result, gJSON1=gJSON1,
+    group_text=group_print_text(group)
+
+    return render_template('customer_groupe.html', group_text=group_text, predict_result=predict_result, gJSON1=gJSON1,
                            gJSON2=gJSON2, gJSON3=gJSON3, gJSON4=gJSON4, gJSON5=gJSON5, gJSON6=gJSON6, gJSON7=gJSON7,
                            gJSON8=gJSON8, gJSON9=gJSON9, gJSON10=gJSON10)
 

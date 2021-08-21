@@ -32,6 +32,7 @@ def preprocessing_predict_data(df):
 
     return df
 
+
 '''
 # compare 2 dataframe, if one is included in another
 def compare(df1, df2):
@@ -49,9 +50,12 @@ def compare(df1, df2):
     return True
 '''
 
+
 def search_customer(data_1, data):
-    search_result = (data['DAYS_BIRTH'] == data_1['DAYS_BIRTH']) & (data['DAYS_EMPLOYED'] == data_1['DAYS_EMPLOYED']) & (
-                data['AMT_GOODS_PRICE'] == data_1['AMT_GOODS_PRICE']) & (data['DAYS_REGISTRATION'] == data_1['DAYS_REGISTRATION'])
+    search_result = (data['DAYS_BIRTH'] == data_1['DAYS_BIRTH']) & (
+                data['DAYS_EMPLOYED'] == data_1['DAYS_EMPLOYED']) & (
+                            data['AMT_GOODS_PRICE'] == data_1['AMT_GOODS_PRICE']) & (
+                                data['DAYS_REGISTRATION'] == data_1['DAYS_REGISTRATION'])
     print("-------SEARCH RESULT--------\n", data[search_result == True])
     return data[search_result == True]
 
@@ -160,18 +164,22 @@ def predict_group(customer_df):
     print(x)
     predict_group = model.predict(x)
 
-    if (predict_group == 0):
-        result = "rich class (0)"
-    elif(predict_group == 1):
-        result = "Young class (1)"
-    elif (predict_group == 2):
-        result = "Middle class (2)"
-    elif (predict_group == 3):
-        result = "Elder class (3)"
-    elif (predict_group == 4):
-        result = "Middle class (4)"
-
     return predict_group
+
+
+def group_print_text(group):
+    if group[0] == 0:
+        predict_group_text = "rich class (0)"
+    elif group[0] == 1:
+        predict_group_text = "Young class (1)"
+    elif group[0] == 2:
+        predict_group_text = "Middle class (2)"
+    elif group[0] == 3:
+        predict_group_text = "Elder class (3)"
+    elif group[0] == 4:
+        predict_group_text = "Middle class (4)"
+
+    return predict_group_text
 
 
 def create_figure(customer_df, group, col):
