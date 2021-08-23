@@ -32,25 +32,7 @@ def preprocessing_predict_data(df):
 
     return df
 
-
-'''
-# compare 2 dataframe, if one is included in another
-def compare(df1, df2):
-    count = 0
-    for i in df1.index:
-        # print("-----------PRINT COMPARE--------------")
-        # print(i)
-
-        if ((df1[i] != df2[i]) & (count <= 4)):
-            return False
-        elif ((df1[i] != df2[i]) & (count > 4)):
-            return True
-
-        count = count + 1
-    return True
-'''
-
-
+# search info if customer exist in dataframe
 def search_customer(data_1, data):
     search_result = (data['DAYS_BIRTH'] == data_1['DAYS_BIRTH']) & (
                 data['DAYS_EMPLOYED'] == data_1['DAYS_EMPLOYED']) & (
@@ -59,12 +41,12 @@ def search_customer(data_1, data):
     print("-------SEARCH RESULT--------\n", data[search_result == True])
     return data[search_result == True]
 
-
+# Test if nan
 def test_NAN(df):
     print(df.isnull())
     return df
 
-
+#predict model
 def predict(df):
     # loaded_model = pickle.load(open('application/' + 'model_catboost.pkl', 'rb'))
     classifer = joblib.load('data/' + 'model_xgmodel_recall_13v.pkl')
@@ -76,7 +58,7 @@ def predict(df):
 
     return result
 
-
+#build Json customer info filter graph
 def toGraph_JSON_filter(data, customer):
     data_max = data.value_counts().iloc[0]
     fig = go.Figure()
@@ -88,6 +70,7 @@ def toGraph_JSON_filter(data, customer):
     return graphJSON
 
 
+#Build Json customer graph
 def toGraph_JSON(data, customer_df_input):
     fig = make_subplots(
         rows=3, cols=3,
@@ -153,7 +136,7 @@ def data_clean(df):
     print("clean ok")
     return df
 
-
+#predict group
 def predict_group(customer_df):
     customer_df = customer_df[
         ['DAYS_BIRTH', 'DAYS_EMPLOYED', 'REGION_RATING_CLIENT_W_CITY', 'REGION_RATING_CLIENT', 'DAYS_REGISTRATION',
@@ -166,7 +149,7 @@ def predict_group(customer_df):
 
     return predict_group
 
-
+#predict type of group
 def group_print_text(group):
     if group[0] == 0:
         predict_group_text = "rich class (0)"
@@ -181,7 +164,7 @@ def group_print_text(group):
 
     return predict_group_text
 
-
+#compare customer/group
 def create_figure(customer_df, group, col):
     data_result = pd.read_csv('data/Kmeans_group_result.csv')
     # print(data_result)
